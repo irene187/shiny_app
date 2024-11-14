@@ -9,7 +9,7 @@ llegir_dades <- if(extensio.arxiu="xls"
   switch(ext,
          csv = read.csv(file$datapath),
          rds = readRDS(file$datapath),
-         rds = readRDS(file$datapath),
+         sav = read_sav(file$datapath),
          stop("Invalid file; Please upload a .csv or .rds file")
   )
 
