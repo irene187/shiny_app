@@ -20,7 +20,3 @@ estadisticas_descriptivas <- function(tabla) {
   return(resumen)
 }
 
-# Ejemplo de uso
-# Supongamos que tienes un data frame llamado 'mi_tabla'
-# resultado <- estadisticas_descriptivas(mi_tabla)
-# print(resultado)
