@@ -3,7 +3,7 @@ library(tidyverse)
 library(DT)  # Load the DT package
 source(here::here("xtab.R"))
 source(here::here("num_analysis.R"))  # Load the num_analysis function
-
+# Vittorio 14112024
 options(shiny.maxRequestSize = 50*1024^2)
 
 ui <- fluidPage(
@@ -64,7 +64,7 @@ server <- function(input, output, session) {
 
     data <- tryCatch({  # Added tryCatch for error handling
       switch(ext,
-             csv = read.csv(file$datapath),
+             csv = read.csv2(file$datapath),
              rds = readRDS(file$datapath),
              stop("Invalid file; Please upload a .csv or .rds file")
       )
