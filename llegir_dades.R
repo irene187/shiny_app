@@ -1,34 +1,22 @@
 library(haven) # spss amb la funcio  read_sav per obrir pq manté les etiquetes
 
 
+# Creem una funció que llegeix les dades, les diferents extensions contemplades son: csv, rds, sav
+
+llegir_dades(fitxer) <-  tryCatch({  # Added tryCatch for error handling
+              switch(ext,
+              csv = read.csv(file$datapath),
+              rds = readRDS(file$datapath),
+              sav = read_sav(file$datapath),
+              stop("Invalid file; Please upload a .csv or .rds or a .sav file")
+  )}, error = function(e) {
+    showNotification("Error reading file: Please upload a valid .csv or .rds or .sav file", type = "error de lectura de dades")  # Added notification for errors
+    return(NULL)
+  })
 
 
-# Abrir fichero en spss
 
-llegir_dades <- if(extensio.arxiu="xls"
-  switch(ext,
-         csv = read.csv(file$datapath),
-         rds = readRDS(file$datapath),
-         sav = read_sav(file$datapath),
-         stop("Invalid file; Please upload a .csv or .rds file")
-  )
-
-
-
-data <- read_sav("20240903_Encuesta relevo generacional_def.sav")  # manté majuscules i minusculas en el nom de les variables
-#dataset<-readSPSS("20240903_Encuesta relevo generacional_def.sav") # si llegeixo la base d'aquesta manera tinc les etiquetes, tot minuscules
+data <- llegir_dades("fitxer")  
 
 
 View(data)
-
-library(Rcmdr)
-library(data.table)
-library("expss") # Llibreria semblant en codi al spss
-
-
-llegir_dades <- ({  # Added tryCatch for error handling
-  switch(ext,
-         csv = read.csv(file$datapath),
-         rds = readRDS(file$datapath),
-         stop("Invalid file; Please upload a .csv or .rds file")
-  )
