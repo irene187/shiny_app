@@ -23,7 +23,7 @@ ui <- fluidPage(
                )
              )
     ),
-    tabPanel("Variable Selection",
+    tabPanel("Qualitative Variables",
              sidebarLayout(
                sidebarPanel(
                  uiOutput("fct_DV"),       # Selector for the variable to describe
