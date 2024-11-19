@@ -1,11 +1,14 @@
-#trying to make grafics
-
 
 my_set_theme <- function(familia = "Atkinson Hyperlegible", mida = 10, angle_text_x, angle_text_y){
   
+  if(!("showtext" %in% installed.packages)  install.packages("showtext")
  
+  library(showtext)
   
-   mytheme <- ggplot2::theme_minimal() + 
+  font_add_google("Atkinson Hyperlegible", "Atkinson Hyperlegible")
+  showtext_auto()
+  
+  mytheme <- ggplot2::theme_minimal() + 
     ggplot2::theme(
       plot.title = ggplot2::element_text(
         family =familia, 
@@ -174,5 +177,6 @@ stacked_bar_plot <- function(myplot){
   
   return(myplot)
   
+  }
 }
 
