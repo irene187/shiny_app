@@ -23,7 +23,7 @@ ui <- fluidPage(
                )
              )
     ),
-    tabPanel("Variable Selection",
+    tabPanel("Qualitative Variables",
              sidebarLayout(
                sidebarPanel(
                  uiOutput("fct_DV"),       # Selector for the variable to describe
@@ -66,7 +66,8 @@ server <- function(input, output, session) {
       switch(ext,
              csv = read.csv(file$datapath),
              rds = readRDS(file$datapath),
-             stop("Invalid file; Please upload a .csv or .rds file")
+             sav = read_sav(file$datapath),
+             stop("Invalid file; Please upload a .sav, .csv or .rds file")
       )
     }, error = function(e) {
       showNotification("Error reading file: Please upload a valid .csv or .rds file", type = "error")  # Added notification for errors
